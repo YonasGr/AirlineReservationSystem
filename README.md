@@ -6,8 +6,8 @@ A simple C++ program for managing airline reservations.
 Yonas Girma  
 IT Student, Haramaya University  
 
-- **GitHub**: @YonasGr(https://github.com/YonasGr)
-- **Telegram**:(https://t.me/Yoniprof)
+- **GitHub**: @YonasGr https://github.com/YonasGr
+- **Telegram**: https://t.me/Yoniprof
 - **Email**: yonasgirma222@gmail.com
 
 
@@ -15,17 +15,17 @@ IT Student, Haramaya University
 
 This project is a console-based **Airline Reservation System** written in C++. It allows users to manage airline reservations, including booking flights, viewing available flights, and printing tickets. The system is designed to simulate real-world scenarios with features such as seat availability tracking and ticket generation.
 
-Technology Stack
+## Technology Stack
 
 * Programming Language: C++
 * Compiler: g++
 * Platform: Windows, Linux, macOS (console-based)
 
-Future Improvements
+## Future Improvements
 
-    Add the ability to cancel tickets.
-    Implement a database system for better data persistence.
-    Enhance the user interface for better navigation.
+-  Add the ability to cancel tickets.
+-  Implement a database system for better data persistence.
+-  Enhance the user interface for better navigation.
 
 ## Features
 - **Flight Management**: 
