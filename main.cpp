@@ -144,11 +144,8 @@ void intro()
     cout << "\t\t\t\t\t\t\t\t\t\t\t\t*WELCOME TO ZZZ AIRLINES* \n\n";
     cout << " Developed by:\n";
     cout << "----------------------------------------------\n";
-    cout <<  "1. Abrham Habtamu" << endl;
-    cout <<  "2. Yonas Gizaw" << endl;
-    cout <<  "3. Yonas Girma" << endl;
-    cout <<  "4. Haset Shawel" << endl;
-    cout <<  "5. Eleni Mosisa" << endl;
+    cout << "Yonas Girma IT Student, Haramaya University\n" << endl; 
+    cout << "GitHub: @YonasGr https://github.com/YonasGr" << endl;
     cout << "----------------------------------------------\n";
     cout << "\nPress 'Enter' to get started: ";
     cin.get();
