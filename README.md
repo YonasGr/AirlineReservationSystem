@@ -17,9 +17,9 @@ This project is a console-based **Airline Reservation System** written in C++. I
 
 Technology Stack
 
-    Programming Language: C++
-    Compiler: g++
-    Platform: Windows, Linux, macOS (console-based)
+* Programming Language: C++
+* Compiler: g++
+* Platform: Windows, Linux, macOS (console-based)
 
 Future Improvements
 
@@ -54,6 +54,8 @@ The system includes the following predefined flights:
    Use a C++ compiler (like g++) to compile the source code.
    ```bash
    g++ -o airline_reservation main.cpp
-2. **Run the Program**:
+2. **Run the Program**
+   ```bash
    ./airline_reservation
+Or you can just download the source code from here and run the main file using codeblocks or anyother compilers. 
    
