@@ -7,7 +7,7 @@ Yonas Girma
 IT Student, Haramaya University  
 
 - **GitHub**: @YonasGr https://github.com/YonasGr
-- **Telegram**: https://t.me/Yoniprof
+- **Telegram**: https://t.me/x_Jonah
 - **Email**: yonasgirma222@gmail.com
 
 
