@@ -1,23 +1,27 @@
-----
+---
+
+# ✈️ Ethiopian Airlines Flight Booking System
+
+[![Telegram](https://img.shields.io/badge/Telegram-Bot-blue?logo=telegram)](https://t.me/x_Jonah)
 [![React](https://img.shields.io/badge/Frontend-React-61DBFB?logo=react\&logoColor=white)](https://reactjs.org/)
 [![Express](https://img.shields.io/badge/Backend-Express-000000?logo=express\&logoColor=white)](https://expressjs.com/)
 [![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql\&logoColor=white)](https://www.postgresql.org/)
-[![TypeScript](https://img.shields.io/badge/Code-TypeScript-3178C6?logo=typescript\&logoColor=white)](https://www.typescriptlang.org/)
+[![Node.js](https://img.shields.io/badge/Node.js-18.x-green?logo=node.js\&logoColor=white)](https://nodejs.org/)
 [![TailwindCSS](https://img.shields.io/badge/Style-Tailwind_CSS-38B2AC?logo=tailwind-css\&logoColor=white)](https://tailwindcss.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ---
 
 ## 🌍 Overview
 
-A **full-stack flight booking application** inspired by Ethiopian Airlines. Users can:
+A **full-stack Ethiopian Airlines flight booking app** where users can:
 
 * 🔎 Search flights
-* 🪑 Pick seats
+* 🪑 Select seats
 * 📖 Book tickets
 * 📂 Manage reservations
 
-Admins can monitor bookings and flight occupancy with a **dedicated dashboard**.
+Admins can monitor bookings and flight occupancy through a **dashboard interface**.
 
 ---
 
@@ -25,38 +29,37 @@ Admins can monitor bookings and flight occupancy with a **dedicated dashboard**.
 
 ### ⚡ Frontend
 
-* Built with **React + TypeScript**
-* **Vite** for lightning-fast builds
-* **shadcn/ui + Radix UI** for accessible and modern UI
-* **TanStack Query** for API data & caching
-* **TailwindCSS** with Ethiopian Airlines brand colors (green, gold, red)
+* **React + TypeScript** with **Vite** for fast builds
+* **shadcn/ui + Radix UI** → accessible & modern components
+* **TanStack Query** → server state & caching
+* **TailwindCSS** → responsive design with Ethiopian Airlines brand colors (green, gold, red)
 
 ### 🔐 Backend
 
 * **Express.js** REST API
-* Modular storage with **MemStorage** (dev) & PostgreSQL (prod)
-* Routes for flights, bookings, passengers, seats
+* Modular storage system (in-memory for dev, PostgreSQL for prod)
+* Routes for flights, bookings, passengers, and seats
 * Logging & error-handling middleware
 
 ### 🗄️ Database
 
 * **PostgreSQL + Drizzle ORM**
 * Entities: `flights`, `passengers`, `bookings`, `seats`
-* **Drizzle Kit** for migrations
+* **Drizzle Kit** → database migrations
 * Fallback in-memory DB for development
 
 ### ⚙️ State Management
 
-* **TanStack Query** → server state
+* **TanStack Query** → API state
 * **React state** → UI state
 * **React Hook Form + Zod** → forms & validation
-* Context providers for modals & toasts
+* Context providers → toasts & modals
 
-### 🎨 Component Design
+### 🎨 Components
 
 * Reusable UI components (`/components/ui`)
-* Feature-based organization (flight cards, seat maps, booking forms)
-* Utility classes & custom CSS variables for spacing, colors, and typography
+* Feature-based organization: flight cards, seat maps, booking forms
+* Utility classes & custom CSS variables for spacing, colors, typography
 
 ---
 
@@ -64,28 +67,28 @@ Admins can monitor bookings and flight occupancy with a **dedicated dashboard**.
 
 ### 🎨 UI & Styling
 
-* **shadcn/ui + Radix UI** → accessible, polished UI components
-* **TailwindCSS** → responsive, utility-first styling
-* **Lucide React** → modern icons
-* **Framer Motion** → smooth animations
+* **shadcn/ui + Radix UI** → polished accessible UI
+* **TailwindCSS** → utility-first CSS
+* **Lucide React** → icons
+* **Framer Motion** → animations
 
 ### 🗄️ Data Management
 
 * **Drizzle ORM** → type-safe DB queries
-* **Neon** → serverless PostgreSQL for production
+* **Neon** → serverless PostgreSQL (prod)
 * **TanStack Query** → caching & API sync
-* **Zod** → runtime validation
+* **Zod** → validation
 
 ### ⚒️ Dev Tools
 
-* **Vite** → blazing-fast dev server
+* **Vite** → dev server
 * **TypeScript** → static typing
-* **ESBuild** → optimized builds
+* **ESBuild** → optimized production builds
 * **React Hook Form** → performant forms
 
 ### 🌐 Routing
 
-* **wouter** → lightweight SPA navigation
+* **wouter** → lightweight SPA routing
 
 ---
 
@@ -100,12 +103,12 @@ cd airline-booking
 npm install
 
 # Start development servers
-npm run dev   # frontend
-npm run server   # backend
+npm run dev     # frontend
+npm run server  # backend
 ```
 
 ---
 
 ## 📜 License
 
-This project is licensed under the **MIT License**.
+This project is licensed under **MIT License**.
