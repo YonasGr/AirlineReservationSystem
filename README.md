@@ -94,15 +94,18 @@ Admins can monitor bookings and flight occupancy through a **dashboard interface
 
 ```bash
 # Clone the repo
-git clone https://github.com/your-username/airline-booking.git
+git clone https://github.com/YonasGr/AirlineReservationSystem.git
 
 # Install dependencies
-cd airline-booking
+cd AirlineReservationSystem
 npm install
 
 # Start development servers
-npm run dev     # frontend
-npm run server  # backend
+docker build -t airline-system .
+docker run -it --rm -p 3000:5000 airline-system
+
+# Then go to any default browser and serch for
+http://localhost:3000/
 ```
 
 ---
