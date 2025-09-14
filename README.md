@@ -1,67 +1,52 @@
-# AirlineReservationSystem
-A simple C++ program for managing airline reservations.
+# Overview
 
-## Author
+This is a full-stack Ethiopian Airlines flight booking application built with React, Express, and PostgreSQL. The application allows users to browse flights, select seats, make bookings, and manage reservations through a modern web interface. It features a complete booking flow from flight search to confirmation, with an admin dashboard for monitoring bookings and flight occupancy.
 
-Yonas Girma  
-IT Student, Haramaya University  
+# User Preferences
 
-- **GitHub**: @YonasGr https://github.com/YonasGr
-- **Telegram**: https://t.me/x_Jonah
-- **Email**: yonasgirma222@gmail.com
+Preferred communication style: Simple, everyday language.
 
+# System Architecture
 
-# Airline Reservation System
+## Frontend Architecture
+The client-side is built with React and TypeScript, using Vite as the build tool. The UI leverages shadcn/ui components for consistent styling and Radix UI primitives for accessible interactions. The application uses wouter for lightweight client-side routing and TanStack Query for server state management and caching. Styling is handled through Tailwind CSS with custom CSS variables for theming, including Ethiopian Airlines brand colors (green, gold, red).
 
-This project is a console-based **Airline Reservation System** written in C++. It allows users to manage airline reservations, including booking flights, viewing available flights, and printing tickets. The system is designed to simulate real-world scenarios with features such as seat availability tracking and ticket generation.
+## Backend Architecture
+The server is built with Express.js and follows a RESTful API pattern. The application uses a modular storage interface pattern with an in-memory implementation for development (MemStorage class), allowing for easy swapping to database implementations. The server includes comprehensive route handling for flights, bookings, passengers, and seats, with proper error handling and request logging middleware.
 
-## Technology Stack
+## Data Storage Design
+The application uses Drizzle ORM with PostgreSQL as the primary database. The schema includes four main entities: flights, passengers, bookings, and seats. Database migrations are managed through Drizzle Kit, with the schema defined in TypeScript for type safety. The current implementation includes a fallback in-memory storage system for development environments.
 
-* Programming Language: C++
-* Compiler: g++
-* Platform: Windows, Linux, macOS (console-based)
+## State Management
+Client-side state is managed through TanStack Query for server state and React's built-in state management for local UI state. The application uses React Hook Form with Zod validation for form handling and validation. Global UI state like toasts and modals are handled through context providers.
 
-## Future Improvements
+## Component Architecture
+The UI follows a component composition pattern with reusable components in the `/components/ui` directory. Business logic components are organized by feature (flight cards, seat maps, booking forms). The application uses a consistent design system with custom CSS variables and utility classes for spacing, colors, and typography.
 
--  Add the ability to cancel tickets.
--  Implement a database system for better data persistence.
--  Enhance the user interface for better navigation.
+# External Dependencies
 
-## Features
-- **Flight Management**: 
-  - Predefined flight schedules, including departure/arrival times and destinations.
-  - Available seats tracked for both economy and business classes.
-- **Passenger Booking**:
-  - Booking flights in economy or business class.
-  - Automatic ticket ID generation.
-- **Ticket Printing**:
-  - Displays booking details in a user-friendly format.
-- **Cross-Platform Console Support**:
-  - Supports `clear` command for Linux/macOS and `cls` for Windows.
+## UI and Styling
+- **shadcn/ui & Radix UI**: Complete component library for accessible UI primitives including dialogs, forms, navigation, and data display components
+- **Tailwind CSS**: Utility-first CSS framework for responsive design and consistent styling
+- **Lucide React**: Icon library for consistent iconography throughout the application
+- **Framer Motion**: Animation library for smooth page transitions and micro-interactions
 
-## Flight Details
-The system includes the following predefined flights:
-| Flight Number | Departure Time | Arrival Time | Destination | Economy Seats | Business Seats |
-|---------------|----------------|--------------|-------------|---------------|----------------|
-| 101           | 08:00 AM       | 10:00 AM     | Dire Dawa   | 10            | 5              |
-| 102           | 09:00 AM       | 11:00 AM     | Gondar      | 10            | 5              |
-| 103           | 10:00 AM       | 12:00 PM     | Bahir Dar   | 10            | 5              |
-| 104           | 01:00 PM       | 03:00 PM     | Mekele      | 10            | 5              |
-| 105           | 02:00 PM       | 04:00 PM     | Addis Ababa | 10            | 5              |
+## Data Management
+- **Drizzle ORM**: TypeScript-first ORM for database operations with PostgreSQL
+- **Neon Database**: Serverless PostgreSQL database provider for production deployments
+- **TanStack React Query**: Server state management, caching, and synchronization
+- **Zod**: Schema validation library for runtime type checking and form validation
 
-## How to Use
-1. **Compile the Program**:
-   Use a C++ compiler (like g++) to compile the source code.
-   ```bash
-   g++ -o airline_reservation main.cpp
-2. **Run the Program**
-   ```bash
-   ./airline_reservation
-Or you can just download the source code from here and run the main file using codeblocks or anyother compilers. 
+## Development Tools
+- **Vite**: Build tool and development server with HMR support
+- **TypeScript**: Static type checking for improved developer experience
+- **ESBuild**: Fast JavaScript bundler for production builds
+- **React Hook Form**: Performant form library with minimal re-renders
 
+## Routing and Navigation
+- **wouter**: Lightweight client-side routing library for single-page application navigation
 
-
-
-
-This one was a bug fix/second time/3rd times
-   
+## Database Configuration
+- **PostgreSQL**: Primary database with connection managed through environment variables
+- **Drizzle Kit**: Database migration and schema management tools
+- **Connect PG Simple**: Session store for PostgreSQL (prepared for session management)

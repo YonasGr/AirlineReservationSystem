@@ -1,14 +1,23 @@
-# Use a base image with g++
-FROM gcc:13
+# Use Node.js as the base image
+FROM node:20
 
-# Set working directory
+# Set working directory inside container
 WORKDIR /app
 
-# Copy source code
+# Copy package.json and package-lock.json first
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy all project files
 COPY . .
 
-# Compile the C++ program
-RUN g++ -o airline main.cpp
+# Build the app (if needed, e.g., Vite/Next.js build step)
+RUN npm run build
 
-# Command to run the program
-CMD ["./airline"]
+# Expose the app port (change if your server uses a different one)
+EXPOSE 3000
+
+# Start the server
+CMD ["npm", "run", "start"]
