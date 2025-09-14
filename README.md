@@ -1,6 +1,6 @@
 ---
 
-#✈️ Ethiopian Airlines Flight Booking System
+## ✈️ Ethiopian Airlines Flight Booking System
 
 [![React](https://img.shields.io/badge/Frontend-React-61DBFB?logo=react\&logoColor=white)](https://reactjs.org/)
 [![Express](https://img.shields.io/badge/Backend-Express-000000?logo=express\&logoColor=white)](https://expressjs.com/)
