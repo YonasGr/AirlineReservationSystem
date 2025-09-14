@@ -1,52 +1,114 @@
-# Overview
+---
 
-This is a full-stack Ethiopian Airlines flight booking application built with React, Express, and PostgreSQL. The application allows users to browse flights, select seats, make bookings, and manage reservations through a modern web interface. It features a complete booking flow from flight search to confirmation, with an admin dashboard for monitoring bookings and flight occupancy.
+# ✈️ Ethiopian Airlines Flight Booking System
 
-# User Preferences
+[![React](https://img.shields.io/badge/Frontend-React-61DBFB?logo=react\&logoColor=white)](https://reactjs.org/)
+[![Express](https://img.shields.io/badge/Backend-Express-000000?logo=express\&logoColor=white)](https://expressjs.com/)
+[![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql\&logoColor=white)](https://www.postgresql.org/)
+[![TypeScript](https://img.shields.io/badge/Code-TypeScript-3178C6?logo=typescript\&logoColor=white)](https://www.typescriptlang.org/)
+[![TailwindCSS](https://img.shields.io/badge/Style-Tailwind_CSS-38B2AC?logo=tailwind-css\&logoColor=white)](https://tailwindcss.com/)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-Preferred communication style: Simple, everyday language.
+---
 
-# System Architecture
+## 🌍 Overview
 
-## Frontend Architecture
-The client-side is built with React and TypeScript, using Vite as the build tool. The UI leverages shadcn/ui components for consistent styling and Radix UI primitives for accessible interactions. The application uses wouter for lightweight client-side routing and TanStack Query for server state management and caching. Styling is handled through Tailwind CSS with custom CSS variables for theming, including Ethiopian Airlines brand colors (green, gold, red).
+A **full-stack flight booking application** inspired by Ethiopian Airlines. Users can:
 
-## Backend Architecture
-The server is built with Express.js and follows a RESTful API pattern. The application uses a modular storage interface pattern with an in-memory implementation for development (MemStorage class), allowing for easy swapping to database implementations. The server includes comprehensive route handling for flights, bookings, passengers, and seats, with proper error handling and request logging middleware.
+* 🔎 Search flights
+* 🪑 Pick seats
+* 📖 Book tickets
+* 📂 Manage reservations
 
-## Data Storage Design
-The application uses Drizzle ORM with PostgreSQL as the primary database. The schema includes four main entities: flights, passengers, bookings, and seats. Database migrations are managed through Drizzle Kit, with the schema defined in TypeScript for type safety. The current implementation includes a fallback in-memory storage system for development environments.
+Admins can monitor bookings and flight occupancy with a **dedicated dashboard**.
 
-## State Management
-Client-side state is managed through TanStack Query for server state and React's built-in state management for local UI state. The application uses React Hook Form with Zod validation for form handling and validation. Global UI state like toasts and modals are handled through context providers.
+---
 
-## Component Architecture
-The UI follows a component composition pattern with reusable components in the `/components/ui` directory. Business logic components are organized by feature (flight cards, seat maps, booking forms). The application uses a consistent design system with custom CSS variables and utility classes for spacing, colors, and typography.
+## 🏗️ System Architecture
 
-# External Dependencies
+### ⚡ Frontend
 
-## UI and Styling
-- **shadcn/ui & Radix UI**: Complete component library for accessible UI primitives including dialogs, forms, navigation, and data display components
-- **Tailwind CSS**: Utility-first CSS framework for responsive design and consistent styling
-- **Lucide React**: Icon library for consistent iconography throughout the application
-- **Framer Motion**: Animation library for smooth page transitions and micro-interactions
+* Built with **React + TypeScript**
+* **Vite** for lightning-fast builds
+* **shadcn/ui + Radix UI** for accessible and modern UI
+* **TanStack Query** for API data & caching
+* **TailwindCSS** with Ethiopian Airlines brand colors (green, gold, red)
 
-## Data Management
-- **Drizzle ORM**: TypeScript-first ORM for database operations with PostgreSQL
-- **Neon Database**: Serverless PostgreSQL database provider for production deployments
-- **TanStack React Query**: Server state management, caching, and synchronization
-- **Zod**: Schema validation library for runtime type checking and form validation
+### 🔐 Backend
 
-## Development Tools
-- **Vite**: Build tool and development server with HMR support
-- **TypeScript**: Static type checking for improved developer experience
-- **ESBuild**: Fast JavaScript bundler for production builds
-- **React Hook Form**: Performant form library with minimal re-renders
+* **Express.js** REST API
+* Modular storage with **MemStorage** (dev) & PostgreSQL (prod)
+* Routes for flights, bookings, passengers, seats
+* Logging & error-handling middleware
 
-## Routing and Navigation
-- **wouter**: Lightweight client-side routing library for single-page application navigation
+### 🗄️ Database
 
-## Database Configuration
-- **PostgreSQL**: Primary database with connection managed through environment variables
-- **Drizzle Kit**: Database migration and schema management tools
-- **Connect PG Simple**: Session store for PostgreSQL (prepared for session management)
+* **PostgreSQL + Drizzle ORM**
+* Entities: `flights`, `passengers`, `bookings`, `seats`
+* **Drizzle Kit** for migrations
+* Fallback in-memory DB for development
+
+### ⚙️ State Management
+
+* **TanStack Query** → server state
+* **React state** → UI state
+* **React Hook Form + Zod** → forms & validation
+* Context providers for modals & toasts
+
+### 🎨 Component Design
+
+* Reusable UI components (`/components/ui`)
+* Feature-based organization (flight cards, seat maps, booking forms)
+* Utility classes & custom CSS variables for spacing, colors, and typography
+
+---
+
+## 📦 Dependencies
+
+### 🎨 UI & Styling
+
+* **shadcn/ui + Radix UI** → accessible, polished UI components
+* **TailwindCSS** → responsive, utility-first styling
+* **Lucide React** → modern icons
+* **Framer Motion** → smooth animations
+
+### 🗄️ Data Management
+
+* **Drizzle ORM** → type-safe DB queries
+* **Neon** → serverless PostgreSQL for production
+* **TanStack Query** → caching & API sync
+* **Zod** → runtime validation
+
+### ⚒️ Dev Tools
+
+* **Vite** → blazing-fast dev server
+* **TypeScript** → static typing
+* **ESBuild** → optimized builds
+* **React Hook Form** → performant forms
+
+### 🌐 Routing
+
+* **wouter** → lightweight SPA navigation
+
+---
+
+## 🚀 Getting Started
+
+```bash
+# Clone the repo
+git clone https://github.com/your-username/airline-booking.git
+
+# Install dependencies
+cd airline-booking
+npm install
+
+# Start development servers
+npm run dev   # frontend
+npm run server   # backend
+```
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
