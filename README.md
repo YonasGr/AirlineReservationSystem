@@ -1,5 +1,3 @@
-----
-
 # ✈️ Ethiopian Airlines Flight Booking System
 
 [![Telegram](https://img.shields.io/badge/Telegram-Bot-blue?logo=telegram)](https://t.me/x_Jonah)
