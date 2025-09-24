@@ -1,24 +1,33 @@
 // client/src/pages/confirmation.tsx
 
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRoute, useLocation } from "wouter";
 import { motion } from "framer-motion";
 import TicketDesign from "@/components/ticket-design";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Check, Download, Mail } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
+import { Check, Download, Mail, Loader2 } from "lucide-react";
 import type { Booking, Flight } from "@shared/schema";
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import { useRef } from 'react'; // Don't forget to import useRef
+import { useRef, useState } from 'react';
 
 export default function Confirmation() {
     const [match, params] = useRoute("/confirmation/:bookingReference");
     const [, setLocation] = useLocation();
     const bookingReference = match ? params?.bookingReference : undefined;
+    const { toast } = useToast();
+    const queryClient = useQueryClient();
 
     // Create a ref to attach to the TicketDesign component
     const ticketRef = useRef(null);
+    
+    // State for email functionality
+    const [showEmailInput, setShowEmailInput] = useState(false);
+    const [customEmail, setCustomEmail] = useState("");
 
     const {
         data: bookingData,
@@ -55,9 +64,55 @@ export default function Confirmation() {
     };
 
     const handleEmailTicket = () => {
-        // TODO: Implement email functionality
-        alert("Email ticket functionality would be implemented here");
+        if (!showEmailInput) {
+            setShowEmailInput(true);
+            return;
+        }
+        
+        // Trigger email mutation
+        emailTicketMutation.mutate({
+            bookingReference: bookingReference!,
+            email: customEmail.trim() || undefined
+        });
     };
+
+    // Email ticket mutation
+    const emailTicketMutation = useMutation({
+        mutationFn: async ({ bookingReference, email }: { bookingReference: string, email?: string }) => {
+            const response = await fetch("/api/bookings/email-ticket", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ 
+                    bookingReference,
+                    email 
+                }),
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || "Failed to send email");
+            }
+
+            return response.json();
+        },
+        onSuccess: (data) => {
+            toast({
+                title: "Email Sent Successfully!",
+                description: `Your ticket has been sent to ${data.recipientEmail}`,
+            });
+            setShowEmailInput(false);
+            setCustomEmail("");
+        },
+        onError: (error: Error) => {
+            toast({
+                title: "Failed to Send Email",
+                description: error.message,
+                variant: "destructive",
+            });
+        },
+    });
 
     const handleBookAnother = () => {
         setLocation("/");
@@ -155,14 +210,41 @@ export default function Confirmation() {
                         <Download className="mr-2 h-4 w-4" />
                         Download Ticket
                     </Button>
-                    <Button
-                        onClick={handleEmailTicket}
-                        variant="secondary"
-                        data-testid="button-email-ticket"
-                    >
-                        <Mail className="mr-2 h-4 w-4" />
-                        Email Ticket
-                    </Button>
+                    
+                    {/* Email Ticket Section */}
+                    <div className="flex flex-col gap-2">
+                        {showEmailInput && (
+                            <div className="flex gap-2">
+                                <Input
+                                    type="email"
+                                    placeholder="Enter email address (optional)"
+                                    value={customEmail}
+                                    onChange={(e) => setCustomEmail(e.target.value)}
+                                    className="max-w-xs"
+                                    disabled={emailTicketMutation.isPending}
+                                />
+                            </div>
+                        )}
+                        <Button
+                            onClick={handleEmailTicket}
+                            variant="secondary"
+                            data-testid="button-email-ticket"
+                            disabled={emailTicketMutation.isPending}
+                        >
+                            {emailTicketMutation.isPending ? (
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            ) : (
+                                <Mail className="mr-2 h-4 w-4" />
+                            )}
+                            {emailTicketMutation.isPending 
+                                ? "Sending..." 
+                                : showEmailInput 
+                                    ? "Send Email" 
+                                    : "Email Ticket"
+                            }
+                        </Button>
+                    </div>
+                    
                     <Button
                         onClick={handleBookAnother}
                         variant="outline"
