@@ -2,6 +2,7 @@ import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
 import { insertPassengerSchema, insertBookingSchema } from "@shared/schema";
+import { emailService } from "./email";
 import { z } from "zod";
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -172,6 +173,68 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(availability);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch availability data" });
+    }
+  });
+
+  // Email ticket endpoint
+  const emailTicketSchema = z.object({
+    bookingReference: z.string().min(1, "Booking reference is required"),
+    email: z.string().email("Valid email address is required").optional(),
+  });
+
+  app.post("/api/bookings/email-ticket", async (req, res) => {
+    try {
+      const { bookingReference, email: customEmail } = emailTicketSchema.parse(req.body);
+
+      // Get booking details
+      const booking = await storage.getBookingByReference(bookingReference);
+      if (!booking) {
+        return res.status(404).json({ message: "Booking not found" });
+      }
+
+      // Get flight details
+      const flight = await storage.getFlight(booking.flightId);
+      if (!flight) {
+        return res.status(404).json({ message: "Flight not found" });
+      }
+
+      // Get passenger details
+      const passenger = await storage.getPassenger(booking.passengerId);
+      if (!passenger) {
+        return res.status(404).json({ message: "Passenger not found" });
+      }
+
+      // Use custom email if provided, otherwise use passenger's email
+      const recipientEmail = customEmail || passenger.email;
+
+      // Send email ticket
+      const emailSent = await emailService.sendTicketEmail(recipientEmail, {
+        booking,
+        flight,
+        passenger,
+      });
+
+      if (emailSent) {
+        res.json({ 
+          message: "Ticket emailed successfully",
+          emailSent: true,
+          recipientEmail: recipientEmail
+        });
+      } else {
+        res.status(500).json({ 
+          message: "Failed to send ticket email",
+          emailSent: false
+        });
+      }
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ 
+          message: "Invalid request data", 
+          errors: error.errors 
+        });
+      }
+      console.error("Email ticket error:", error);
+      res.status(500).json({ message: "Failed to send ticket email" });
     }
   });
 

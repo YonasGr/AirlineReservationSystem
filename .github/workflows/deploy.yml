@@ -1,0 +1,55 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run TypeScript checks
+      run: npm run check
+      
+    - name: Build for production
+      run: npm run build
+      
+    - name: Build Docker image
+      run: docker build -t airline-reservation-system .
+      
+    - name: Run container health check
+      run: |
+        # Start container in background
+        docker run -d -p 3000:5000 --name test-container airline-reservation-system
+        
+        # Wait for container to start
+        sleep 10
+        
+        # Health check (if application is running on port 5000 internally)
+        curl -f http://localhost:3000 || exit 1
+        
+        # Clean up
+        docker stop test-container
+        docker rm test-container
+        
+    - name: Log deployment info
+      run: |
+        echo "✅ Build successful"
+        echo "✅ Docker image created"
+        echo "✅ Health check passed"
+        echo "🚀 Ready for deployment"

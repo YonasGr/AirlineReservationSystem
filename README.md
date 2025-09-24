@@ -1,5 +1,7 @@
 # ✈️ Ethiopian Airlines Flight Booking System
 
+[![CI/CD Pipeline](https://github.com/YonasGr/AirlineReservationSystem/actions/workflows/ci.yml/badge.svg)](https://github.com/YonasGr/AirlineReservationSystem/actions/workflows/ci.yml)
+[![Deploy to Production](https://github.com/YonasGr/AirlineReservationSystem/actions/workflows/deploy.yml/badge.svg)](https://github.com/YonasGr/AirlineReservationSystem/actions/workflows/deploy.yml)
 [![Telegram](https://img.shields.io/badge/Telegram-Bot-blue?logo=telegram)](https://t.me/x_Jonah)
 [![React](https://img.shields.io/badge/Frontend-React-61DBFB?logo=react\&logoColor=white)](https://reactjs.org/)
 [![Express](https://img.shields.io/badge/Backend-Express-000000?logo=express\&logoColor=white)](https://expressjs.com/)
@@ -12,14 +14,26 @@
 
 ## 🌍 Overview
 
-A **full-stack Ethiopian Airlines flight booking app** where users can:
+A **full-stack Ethiopian Airlines flight booking web application** built with modern technologies where users can:
 
 * 🔎 Search flights
-* 🪑 Select seats
+* 🪑 Select seats  
 * 📖 Book tickets
+* 📧 **Email tickets** (newly implemented!)
 * 📂 Manage reservations
 
 Admins can monitor bookings and flight occupancy through a **dashboard interface**.
+
+---
+
+## ✨ New Features
+
+### 📧 Email Ticket Functionality
+- **Professional email templates** with Ethiopian Airlines branding
+- **Flexible recipient options** - send to passenger email or custom address
+- **HTML & text formats** for maximum compatibility
+- **Complete booking details** including flight info, seat selection, and pricing
+- **Development mode logging** for easy testing and debugging
 
 ---
 
@@ -87,6 +101,29 @@ Admins can monitor bookings and flight occupancy through a **dashboard interface
 ### 🌐 Routing
 
 * **wouter** → lightweight SPA routing
+
+---
+
+## 🔄 CI/CD Pipeline
+
+### ✅ Continuous Integration
+- **Multi-Node.js versions** testing (18.x, 20.x)
+- **TypeScript compilation** checks
+- **Build verification** for both frontend and backend
+- **Security auditing** with npm audit
+- **Code quality** checks (ESLint, Prettier when configured)
+
+### 🚀 Continuous Deployment  
+- **Automated builds** on main branch pushes
+- **Docker containerization** with health checks
+- **Production-ready** deployment pipeline
+- **Manual deployment** trigger support
+
+### 🧪 Testing Strategy
+- **TypeScript validation** ensures type safety
+- **Build process verification** catches integration issues  
+- **Health checks** validate running application
+- **Modular test structure** ready for unit/integration tests
 
 ---
 
